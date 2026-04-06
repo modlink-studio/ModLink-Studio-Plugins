@@ -3,7 +3,7 @@ name = "modlink-plugin-host-camera"
 version = "0.2.0rc2"
 description = "Host camera driver plugin for ModLink Studio"
 readme = "README.md"
-license = "GPL-3.0-or-later"
+license = "MIT"
 license-files = ["LICENSE"]
 requires-python = ">=3.13"
 dependencies = [
