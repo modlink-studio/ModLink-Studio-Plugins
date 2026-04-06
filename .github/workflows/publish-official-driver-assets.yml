@@ -8,11 +8,7 @@ on:
       plugin_id:
         description: Plugin identifier to publish
         required: true
-        type: choice
-        options:
-          - host-camera
-          - host-microphone
-          - openbci-ganglion
+        type: string
       release_tag:
         description: Existing plugin release tag, for example plugin-host-camera-v0.2.0rc2
         required: true
@@ -37,42 +33,32 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" = "release" ]; then
             tag="${{ github.event.release.tag_name }}"
-            case "$tag" in
-              plugin-host-camera-v*)
-                plugin_id="host-camera"
-                plugin_dir="plugins/host-camera"
-                ;;
-              plugin-host-microphone-v*)
-                plugin_id="host-microphone"
-                plugin_dir="plugins/host-microphone"
-                ;;
-              plugin-openbci-ganglion-v*)
-                plugin_id="openbci-ganglion"
-                plugin_dir="plugins/openbci-ganglion"
-                ;;
-              *)
-                echo "Unsupported plugin release tag: $tag" >&2
-                exit 1
-                ;;
-            esac
+            if [[ "$tag" =~ ^plugin-(.+)-v[^/]+$ ]]; then
+              plugin_id="${BASH_REMATCH[1]}"
+            else
+              echo "Unsupported plugin release tag: $tag" >&2
+              exit 1
+            fi
           else
             tag="${{ inputs.release_tag }}"
             plugin_id="${{ inputs.plugin_id }}"
-            case "$plugin_id" in
-              host-camera)
-                plugin_dir="plugins/host-camera"
-                ;;
-              host-microphone)
-                plugin_dir="plugins/host-microphone"
-                ;;
-              openbci-ganglion)
-                plugin_dir="plugins/openbci-ganglion"
-                ;;
-              *)
-                echo "Unsupported plugin id: $plugin_id" >&2
-                exit 1
-                ;;
-            esac
+          fi
+          if [ -z "$plugin_id" ]; then
+            echo "Plugin id must not be empty." >&2
+            exit 1
+          fi
+          if [[ "$tag" != plugin-${plugin_id}-v* ]]; then
+            echo "Release tag '$tag' does not match plugin id '$plugin_id'." >&2
+            exit 1
+          fi
+          plugin_dir="plugins/$plugin_id"
+          if [ ! -d "$plugin_dir" ]; then
+            echo "Plugin directory does not exist: $plugin_dir" >&2
+            exit 1
+          fi
+          if [ ! -f "$plugin_dir/pyproject.toml" ]; then
+            echo "Plugin metadata file is missing: $plugin_dir/pyproject.toml" >&2
+            exit 1
           fi
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
           echo "plugin_id=$plugin_id" >> "$GITHUB_OUTPUT"
