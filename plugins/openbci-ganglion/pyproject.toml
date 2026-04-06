@@ -1,13 +1,13 @@
 [project]
 name = "modlink-plugin-openbci-ganglion"
-version = "0.2.0rc2"
+version = "0.2.0rc3"
 description = "OpenBCI Ganglion driver plugin for ModLink Studio"
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
 requires-python = ">=3.13"
 dependencies = [
-    "modlink-studio>=0.2.0rc2,<0.3.0",
+    "modlink-studio>=0.2.0rc3,<0.3.0",
     "brainflow",
     "bleak",
     "numpy>=2.3.3",

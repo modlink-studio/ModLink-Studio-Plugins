@@ -8,9 +8,9 @@
       "summary": "Camera capture driver for local webcam devices.",
       "releases": [
         {
-          "version": "0.2.0rc2",
-          "host_version_spec": ">=0.2.0rc2,<0.3.0",
-          "wheel_url": "https://github.com/modlink-studio/ModLink-Studio-Plugins/releases/download/plugin-host-camera-v0.2.0rc2/modlink_plugin_host_camera-0.2.0rc2-py3-none-any.whl"
+          "version": "0.2.0rc3",
+          "host_version_spec": ">=0.2.0rc3,<0.3.0",
+          "wheel_url": "https://github.com/modlink-studio/ModLink-Studio-Plugins/releases/download/plugin-host-camera-v0.2.0rc3/modlink_plugin_host_camera-0.2.0rc3-py3-none-any.whl"
         }
       ]
     },
@@ -21,9 +21,9 @@
       "summary": "Microphone capture driver for local audio input devices.",
       "releases": [
         {
-          "version": "0.2.0rc2",
-          "host_version_spec": ">=0.2.0rc2,<0.3.0",
-          "wheel_url": "https://github.com/modlink-studio/ModLink-Studio-Plugins/releases/download/plugin-host-microphone-v0.2.0rc2/modlink_plugin_host_microphone-0.2.0rc2-py3-none-any.whl"
+          "version": "0.2.0rc3",
+          "host_version_spec": ">=0.2.0rc3,<0.3.0",
+          "wheel_url": "https://github.com/modlink-studio/ModLink-Studio-Plugins/releases/download/plugin-host-microphone-v0.2.0rc3/modlink_plugin_host_microphone-0.2.0rc3-py3-none-any.whl"
         }
       ]
     },
@@ -34,9 +34,9 @@
       "summary": "OpenBCI Ganglion driver over BLE or serial transport.",
       "releases": [
         {
-          "version": "0.2.0rc2",
-          "host_version_spec": ">=0.2.0rc2,<0.3.0",
-          "wheel_url": "https://github.com/modlink-studio/ModLink-Studio-Plugins/releases/download/plugin-openbci-ganglion-v0.2.0rc2/modlink_plugin_openbci_ganglion-0.2.0rc2-py3-none-any.whl"
+          "version": "0.2.0rc3",
+          "host_version_spec": ">=0.2.0rc3,<0.3.0",
+          "wheel_url": "https://github.com/modlink-studio/ModLink-Studio-Plugins/releases/download/plugin-openbci-ganglion-v0.2.0rc3/modlink_plugin_openbci_ganglion-0.2.0rc3-py3-none-any.whl"
         }
       ]
     }

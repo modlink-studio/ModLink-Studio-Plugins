@@ -14,7 +14,7 @@
 - GitHub Release 资产构建
 - 插件索引维护
 
-当前主线版本是 `0.2.0rc2`。这里的官方驱动都已经按纯 Python driver API 迁移，不再依赖旧的 Qt-style runtime 契约。
+当前主线版本是 `0.2.0rc3`。这里的官方驱动都已经按纯 Python driver API 迁移，不再依赖旧的 Qt-style runtime 契约。
 
 ## 当前官方驱动
 
