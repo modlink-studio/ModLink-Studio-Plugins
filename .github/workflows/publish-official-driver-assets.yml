@@ -1,0 +1,104 @@
+name: Publish Official Driver Assets
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      plugin_id:
+        description: Plugin identifier to publish
+        required: true
+        type: choice
+        options:
+          - host-camera
+          - host-microphone
+          - openbci-ganglion
+      release_tag:
+        description: Existing plugin release tag, for example plugin-host-camera-v0.2.0rc2
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    if: github.event_name != 'release' || startsWith(github.event.release.tag_name, 'plugin-')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Resolve plugin target
+        id: target
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            tag="${{ github.event.release.tag_name }}"
+            case "$tag" in
+              plugin-host-camera-v*)
+                plugin_id="host-camera"
+                plugin_dir="plugins/host-camera"
+                ;;
+              plugin-host-microphone-v*)
+                plugin_id="host-microphone"
+                plugin_dir="plugins/host-microphone"
+                ;;
+              plugin-openbci-ganglion-v*)
+                plugin_id="openbci-ganglion"
+                plugin_dir="plugins/openbci-ganglion"
+                ;;
+              *)
+                echo "Unsupported plugin release tag: $tag" >&2
+                exit 1
+                ;;
+            esac
+          else
+            tag="${{ inputs.release_tag }}"
+            plugin_id="${{ inputs.plugin_id }}"
+            case "$plugin_id" in
+              host-camera)
+                plugin_dir="plugins/host-camera"
+                ;;
+              host-microphone)
+                plugin_dir="plugins/host-microphone"
+                ;;
+              openbci-ganglion)
+                plugin_dir="plugins/openbci-ganglion"
+                ;;
+              *)
+                echo "Unsupported plugin id: $plugin_id" >&2
+                exit 1
+                ;;
+            esac
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "plugin_id=$plugin_id" >> "$GITHUB_OUTPUT"
+          echo "plugin_dir=$plugin_dir" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout release tag
+        run: git checkout "${{ steps.target.outputs.tag }}"
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install uv
+        run: python -m pip install uv
+
+      - name: Build plugin wheel
+        run: |
+          rm -rf dist/plugins
+          mkdir -p "dist/plugins/${{ steps.target.outputs.plugin_id }}"
+          uv build "${{ steps.target.outputs.plugin_dir }}" -o "dist/plugins/${{ steps.target.outputs.plugin_id }}"
+
+      - name: Upload plugin wheel to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for wheel in "dist/plugins/${{ steps.target.outputs.plugin_id }}"/*.whl; do
+            gh release upload "${{ steps.target.outputs.tag }}" "$wheel" --clobber
+          done

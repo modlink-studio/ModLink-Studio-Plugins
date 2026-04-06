@@ -1,0 +1,30 @@
+[project]
+name = "modlink-plugin-host-camera"
+version = "0.2.0rc2"
+description = "Host camera driver plugin for ModLink Studio"
+readme = "README.md"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
+requires-python = ">=3.13"
+dependencies = [
+    "modlink-studio>=0.2.0rc2,<0.3.0",
+    "numpy>=2.3.3",
+    "opencv-python>=4.11.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/modlink-studio/ModLink-Studio-Plugins"
+Repository = "https://github.com/modlink-studio/ModLink-Studio-Plugins"
+Documentation = "https://modlink-studio.github.io/official-plugins/"
+Issues = "https://github.com/modlink-studio/ModLink-Studio-Plugins/issues"
+
+[project.entry-points."modlink.drivers"]
+host-camera = "host_camera.factory:create_driver"
+
+[build-system]
+requires = ["uv_build>=0.10.9,<0.11.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "host_camera"
+module-root = ""
