@@ -24,6 +24,8 @@
   官方驱动源码：Host Microphone
 - `openbci-ganglion/`
   官方驱动源码：OpenBCI Ganglion
+- `palm-sensor/`
+  官方驱动源码：Palm Sensor
 
 ## 仓库内联调
 
@@ -39,4 +41,8 @@ uv run python -m pip install -e plugins/host-microphone
 
 ```bash
 uv run python -m pip install -e plugins/openbci-ganglion
+```
+
+```bash
+uv run python -m pip install -e plugins/palm-sensor
 ```

@@ -39,6 +39,19 @@
           "wheel_url": "https://github.com/modlink-studio/ModLink-Studio-Plugins/releases/download/plugin-openbci-ganglion-v0.2.0rc3/modlink_plugin_openbci_ganglion-0.2.0rc3-py3-none-any.whl"
         }
       ]
+    },
+    {
+      "plugin_id": "palm-sensor",
+      "distribution": "modlink-plugin-palm-sensor",
+      "display_name": "Palm Sensor",
+      "summary": "Serial palm sensor driver for 10x10 field visualization.",
+      "releases": [
+        {
+          "version": "0.1.0",
+          "host_version_spec": ">=0.2.0,<0.3.0",
+          "wheel_url": "https://github.com/modlink-studio/ModLink-Studio-Plugins/releases/download/plugin-palm-sensor-v0.1.0/modlink_plugin_palm_sensor-0.1.0-py3-none-any.whl"
+        }
+      ]
     }
   ]
 }

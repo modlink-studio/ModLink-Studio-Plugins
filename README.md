@@ -14,6 +14,7 @@ ModLink Studio 官方驱动插件仓库。
 - `host-camera`
 - `host-microphone`
 - `openbci-ganglion`
+- `palm-sensor`
 
 ## Install
 
@@ -39,7 +40,8 @@ ModLink-Studio-Plugins/
 │  ├─ index.json
 │  ├─ host-camera/
 │  ├─ host-microphone/
-│  └─ openbci-ganglion/
+│  ├─ openbci-ganglion/
+│  └─ palm-sensor/
 └─ LICENSE
 ```
 
@@ -53,4 +55,5 @@ ModLink-Studio-Plugins/
 python -m pip install -e plugins/host-camera
 python -m pip install -e plugins/host-microphone
 python -m pip install -e plugins/openbci-ganglion
+python -m pip install -e plugins/palm-sensor
 ```

@@ -1,0 +1,30 @@
+[project]
+name = "modlink-plugin-palm-sensor"
+version = "0.1.0"
+description = "Palm sensor driver plugin for ModLink Studio"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.13"
+dependencies = [
+    "modlink-studio>=0.2.0,<0.3.0",
+    "numpy>=2.3.3",
+    "pyserial>=3.5",
+]
+
+[project.urls]
+Homepage = "https://github.com/modlink-studio/ModLink-Studio-Plugins"
+Repository = "https://github.com/modlink-studio/ModLink-Studio-Plugins"
+Documentation = "https://modlink-studio.github.io/official-plugins/"
+Issues = "https://github.com/modlink-studio/ModLink-Studio-Plugins/issues"
+
+[project.entry-points."modlink.drivers"]
+palm-sensor = "palm_sensor.factory:create_driver"
+
+[build-system]
+requires = ["uv_build>=0.10.9,<0.11.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "palm_sensor"
+module-root = ""
