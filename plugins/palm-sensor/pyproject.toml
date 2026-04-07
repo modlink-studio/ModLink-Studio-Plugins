@@ -1,6 +1,6 @@
 [project]
 name = "modlink-plugin-palm-sensor"
-version = "0.1.0"
+version = "0.1.0rc1"
 description = "Palm sensor driver plugin for ModLink Studio"
 readme = "README.md"
 license = "MIT"

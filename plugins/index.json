@@ -9,7 +9,7 @@
       "releases": [
         {
           "version": "0.2.0rc3",
-          "host_version_spec": ">=0.2.0rc3,<0.3.0",
+          "host_version_spec": ">=0.2.0,<0.3.0",
           "wheel_url": "https://github.com/modlink-studio/ModLink-Studio-Plugins/releases/download/plugin-host-camera-v0.2.0rc3/modlink_plugin_host_camera-0.2.0rc3-py3-none-any.whl"
         }
       ]
@@ -22,7 +22,7 @@
       "releases": [
         {
           "version": "0.2.0rc3",
-          "host_version_spec": ">=0.2.0rc3,<0.3.0",
+          "host_version_spec": ">=0.2.0,<0.3.0",
           "wheel_url": "https://github.com/modlink-studio/ModLink-Studio-Plugins/releases/download/plugin-host-microphone-v0.2.0rc3/modlink_plugin_host_microphone-0.2.0rc3-py3-none-any.whl"
         }
       ]
@@ -35,7 +35,7 @@
       "releases": [
         {
           "version": "0.2.0rc3",
-          "host_version_spec": ">=0.2.0rc3,<0.3.0",
+          "host_version_spec": ">=0.2.0,<0.3.0",
           "wheel_url": "https://github.com/modlink-studio/ModLink-Studio-Plugins/releases/download/plugin-openbci-ganglion-v0.2.0rc3/modlink_plugin_openbci_ganglion-0.2.0rc3-py3-none-any.whl"
         }
       ]
@@ -47,9 +47,9 @@
       "summary": "Serial palm sensor driver for 10x10 field visualization.",
       "releases": [
         {
-          "version": "0.1.0",
+          "version": "0.1.0rc1",
           "host_version_spec": ">=0.2.0,<0.3.0",
-          "wheel_url": "https://github.com/modlink-studio/ModLink-Studio-Plugins/releases/download/plugin-palm-sensor-v0.1.0/modlink_plugin_palm_sensor-0.1.0-py3-none-any.whl"
+          "wheel_url": "https://github.com/modlink-studio/ModLink-Studio-Plugins/releases/download/plugin-palm-sensor-v0.1.0rc1/modlink_plugin_palm_sensor-0.1.0rc1-py3-none-any.whl"
         }
       ]
     }
