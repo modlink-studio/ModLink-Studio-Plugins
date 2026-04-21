@@ -47,5 +47,5 @@ modlink-plugin install palm-sensor
 ## 在仓库里联调
 
 ```bash
-uv run python -m pip install -e plugins/palm-sensor
+uv pip install --python .venv/Scripts/python.exe --no-deps -e plugins/palm-sensor
 ```

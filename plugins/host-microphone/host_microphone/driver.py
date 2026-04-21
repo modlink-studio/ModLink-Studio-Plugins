@@ -9,6 +9,7 @@ import numpy as np
 from modlink_sdk import Driver, FrameEnvelope, SearchResult, StreamDescriptor
 
 DEFAULT_DEVICE_ID = "host_microphone.01"
+DEFAULT_STREAM_KEY = "audio"
 DEFAULT_SAMPLE_RATE_HZ = 16_000.0
 DEFAULT_CHUNK_SIZE = 1024
 
@@ -37,7 +38,7 @@ class MicrophoneDemoDriver(Driver):
         return [
             StreamDescriptor(
                 device_id=self.device_id,
-                modality="audio",
+                stream_key=DEFAULT_STREAM_KEY,
                 payload_type="signal",
                 nominal_sample_rate_hz=DEFAULT_SAMPLE_RATE_HZ,
                 chunk_size=DEFAULT_CHUNK_SIZE,
@@ -120,7 +121,7 @@ class MicrophoneDemoDriver(Driver):
         emitted = self.emit_frame(
             FrameEnvelope(
                 device_id=self.device_id,
-                modality="audio",
+                stream_key=DEFAULT_STREAM_KEY,
                 timestamp_ns=time.time_ns(),
                 data=np.ascontiguousarray(indata[:, 0], dtype=np.float32)[np.newaxis, :],
                 seq=self._seq,

@@ -15,7 +15,7 @@
 - `LoopDriver` 负责基于 runtime 周期调度的轮询和流生命周期
 - 输出固定 chunk 的 EEG `signal` payload
 
-当前驱动实现已经跟随 `0.2.0` 主线迁移到纯 Python runtime，不再依赖 Qt signal 或 `QTimer`。
+当前驱动源码主线面向 `modlink-studio >=0.3.0rc1,<0.4.0`，并已经迁移到纯 Python runtime，不再依赖 Qt signal 或 `QTimer`。
 
 ## 适用场景
 
@@ -32,5 +32,5 @@ modlink-plugin install openbci-ganglion
 ## 在仓库里联调
 
 ```bash
-uv run python -m pip install -e plugins/openbci-ganglion
+uv pip install --python .venv/Scripts/python.exe --no-deps -e plugins/openbci-ganglion
 ```

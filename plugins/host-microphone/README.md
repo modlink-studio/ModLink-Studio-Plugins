@@ -23,5 +23,5 @@ modlink-plugin install host-microphone
 ## 在仓库里联调
 
 ```bash
-uv run python -m pip install -e plugins/host-microphone
+uv pip install --python .venv/Scripts/python.exe --no-deps -e plugins/host-microphone
 ```

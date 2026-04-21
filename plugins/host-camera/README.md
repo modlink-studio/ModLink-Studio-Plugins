@@ -23,5 +23,5 @@ modlink-plugin install host-camera
 ## 在仓库里联调
 
 ```bash
-uv run python -m pip install -e plugins/host-camera
+uv pip install --python .venv/Scripts/python.exe --no-deps -e plugins/host-camera
 ```

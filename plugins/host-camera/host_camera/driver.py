@@ -9,6 +9,7 @@ import numpy as np
 from modlink_sdk import Driver, FrameEnvelope, SearchResult, StreamDescriptor
 
 DEFAULT_DEVICE_ID = "host_camera.01"
+DEFAULT_STREAM_KEY = "video"
 DEFAULT_FRAME_RATE_FPS = 30.0
 DEFAULT_WIDTH = 640
 DEFAULT_HEIGHT = 480
@@ -37,7 +38,7 @@ class WebcamDriver(Driver):
         return [
             StreamDescriptor(
                 device_id=self.device_id,
-                modality="video",
+                stream_key=DEFAULT_STREAM_KEY,
                 payload_type="video",
                 nominal_sample_rate_hz=DEFAULT_FRAME_RATE_FPS,
                 chunk_size=1,
@@ -152,7 +153,7 @@ class WebcamDriver(Driver):
             emitted = self.emit_frame(
                 FrameEnvelope(
                     device_id=self.device_id,
-                    modality="video",
+                    stream_key=DEFAULT_STREAM_KEY,
                     timestamp_ns=time.time_ns(),
                     data=data,
                     seq=self._seq,

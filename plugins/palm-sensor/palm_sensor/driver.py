@@ -13,6 +13,7 @@ from .parser import ByteStreamParser, PalmMatrixAssembler
 DEFAULT_DEVICE_ID = "palm_sensor.01"
 DEFAULT_DISPLAY_NAME = "Palm Sensor"
 DEFAULT_STREAM_DISPLAY_NAME = "Palm Sensor Field"
+DEFAULT_STREAM_KEY = "pressure"
 DEFAULT_SAMPLE_RATE_HZ = 10.0
 DEFAULT_CHUNK_SIZE = 1
 DEFAULT_CHANNEL_NAMES = ("pressure",)
@@ -51,7 +52,7 @@ class PalmSensorDriver(LoopDriver):
         return [
             StreamDescriptor(
                 device_id=self.device_id,
-                modality="pressure",
+                stream_key=DEFAULT_STREAM_KEY,
                 payload_type="field",
                 nominal_sample_rate_hz=DEFAULT_SAMPLE_RATE_HZ,
                 chunk_size=DEFAULT_CHUNK_SIZE,
@@ -176,19 +177,14 @@ class PalmSensorDriver(LoopDriver):
                 if ENABLE_ZERO_BASELINE and self._zero_offset is not None:
                     matrix_data = np.ascontiguousarray(matrix_data - self._zero_offset, dtype=np.float32)
                 timestamp_ns = time.time_ns()
-                observed_rate_hz = self._rate_estimator.update(timestamp_ns)
+                self._rate_estimator.update(timestamp_ns)
                 emitted = self.emit_frame(
                     FrameEnvelope(
                         device_id=self.device_id,
-                        modality="pressure",
+                        stream_key=DEFAULT_STREAM_KEY,
                         timestamp_ns=timestamp_ns,
                         data=matrix_data[np.newaxis, np.newaxis, :, :],
                         seq=self._seq,
-                        extra={
-                            "port": str(getattr(serial_port, "port", "")),
-                            "observed_rate_hz": observed_rate_hz,
-                            "zero_mode": ENABLE_ZERO_BASELINE,
-                        },
                     )
                 )
                 if emitted:

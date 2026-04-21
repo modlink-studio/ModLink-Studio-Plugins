@@ -12,6 +12,7 @@ from modlink_sdk import FrameEnvelope, LoopDriver, SearchResult, StreamDescripto
 
 DEFAULT_GANGLION_DEVICE_ID = "openbci_ganglion.01"
 DEFAULT_GANGLION_DISPLAY_NAME = "OpenBCI Ganglion"
+DEFAULT_STREAM_KEY = "eeg"
 DEFAULT_SAMPLE_RATE_HZ = 200.0
 DEFAULT_CHUNK_SIZE = 10
 DEFAULT_CHANNEL_NAMES = ("ch1", "ch2", "ch3", "ch4")
@@ -45,7 +46,7 @@ class OpenBCIGanglionDriver(LoopDriver):
         return [
             StreamDescriptor(
                 device_id=self.device_id,
-                modality="eeg",
+                stream_key=DEFAULT_STREAM_KEY,
                 payload_type="signal",
                 nominal_sample_rate_hz=DEFAULT_SAMPLE_RATE_HZ,
                 chunk_size=DEFAULT_CHUNK_SIZE,
@@ -200,7 +201,7 @@ class OpenBCIGanglionDriver(LoopDriver):
             emitted = self.emit_frame(
                 FrameEnvelope(
                     device_id=self.device_id,
-                    modality="eeg",
+                    stream_key=DEFAULT_STREAM_KEY,
                     timestamp_ns=time.time_ns(),
                     data=chunk,
                     seq=self._seq,

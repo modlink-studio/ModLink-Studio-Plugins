@@ -93,7 +93,7 @@ def test_descriptors_match_field_contract() -> None:
     descriptor = driver.descriptors()[0]
 
     assert descriptor.device_id == "palm_sensor.01"
-    assert descriptor.modality == "pressure"
+    assert descriptor.stream_key == "pressure"
     assert descriptor.payload_type == "field"
     assert descriptor.chunk_size == 1
     assert descriptor.channel_names == ("pressure",)
@@ -137,9 +137,8 @@ def test_loop_emits_complete_field_frame(monkeypatch: pytest.MonkeyPatch) -> Non
     assert len(emitted_frames) == 1
     frame = emitted_frames[0]
     assert frame.device_id == "palm_sensor.01"
-    assert frame.modality == "pressure"
+    assert frame.stream_key == "pressure"
     assert frame.seq == 0
-    assert frame.extra["port"] == "COM7"
     assert frame.data.shape == (1, 1, 10, 10)
     assert frame.data.dtype == np.float32
     assert frame.data[0, 0, 0, :].tolist() == _expected_row(0)
@@ -195,9 +194,7 @@ def test_zero_baseline_uses_first_complete_matrix_as_reference(monkeypatch: pyte
     assert len(emitted_frames) == 2
     first = emitted_frames[0]
     second = emitted_frames[1]
-    assert first.extra["zero_mode"] is True
     assert np.allclose(first.data, 0.0)
-    assert second.extra["zero_mode"] is True
     assert second.data[0, 0, 0, :].tolist() == [10.0] * 10
     assert second.data[0, 0, 9, :].tolist() == [10.0] * 10
 

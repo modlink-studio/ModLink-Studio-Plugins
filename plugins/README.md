@@ -14,7 +14,12 @@
 - GitHub Release 资产构建
 - 插件索引维护
 
-当前主线版本是 `0.2.0rc3`。这里的官方驱动都已经按纯 Python driver API 迁移，不再依赖旧的 Qt-style runtime 契约。
+当前源码主线面向 `modlink-studio >=0.3.0rc1,<0.4.0`，并已经按当前纯 Python driver API 适配完成，不再依赖旧的 Qt-style runtime 契约。
+
+插件索引会同时保留两条 release 线：
+
+- `>=0.2.0,<0.3.0` 使用历史 wheel
+- `>=0.3.0rc1,<0.4.0` 使用当前这套适配 `stream_key` / 新 `FrameEnvelope` 形状的 wheel
 
 ## 当前官方驱动
 
@@ -32,17 +37,17 @@
 从 monorepo 根目录运行时，可以把某个驱动源码直接装进当前环境：
 
 ```bash
-uv run python -m pip install -e plugins/host-camera
+uv pip install --python .venv/Scripts/python.exe --no-deps -e plugins/host-camera
 ```
 
 ```bash
-uv run python -m pip install -e plugins/host-microphone
+uv pip install --python .venv/Scripts/python.exe --no-deps -e plugins/host-microphone
 ```
 
 ```bash
-uv run python -m pip install -e plugins/openbci-ganglion
+uv pip install --python .venv/Scripts/python.exe --no-deps -e plugins/openbci-ganglion
 ```
 
 ```bash
-uv run python -m pip install -e plugins/palm-sensor
+uv pip install --python .venv/Scripts/python.exe --no-deps -e plugins/palm-sensor
 ```
